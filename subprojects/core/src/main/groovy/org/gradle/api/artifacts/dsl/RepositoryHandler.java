@@ -21,6 +21,7 @@ import org.gradle.api.artifacts.ArtifactRepositoryContainer;
 import org.gradle.api.artifacts.repositories.FlatDirectoryArtifactRepository;
 import org.gradle.api.artifacts.repositories.IvyArtifactRepository;
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository;
+import org.gradle.api.artifacts.repositories.P2ArtifactRepository;
 
 import java.util.Map;
 
@@ -231,4 +232,20 @@ public interface RepositoryHandler extends ArtifactRepositoryContainer {
      */
     IvyArtifactRepository ivy(Action<? super IvyArtifactRepository> action);
 
+    /**
+     * Adds and configures a p2 repository. Newly created instance of {@code P2ArtifactRepository} is passed as an argument to the closure.
+     *
+     * @param closure The closure to use to configure the repository.
+     * @return The added repository.
+     */
+    P2ArtifactRepository p2(Closure closure);
+    
+    /**
+     * Adds and configures a p2 repository.
+     *
+     * @param action The action to use to configure the repository.
+     * @return The added repository.
+     */
+    P2ArtifactRepository p2(Action<? super P2ArtifactRepository> action);
+    
 }

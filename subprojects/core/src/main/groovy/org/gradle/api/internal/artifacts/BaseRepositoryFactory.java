@@ -18,6 +18,7 @@ package org.gradle.api.internal.artifacts;
 import org.gradle.api.artifacts.repositories.FlatDirectoryArtifactRepository;
 import org.gradle.api.artifacts.repositories.IvyArtifactRepository;
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository;
+import org.gradle.api.artifacts.repositories.P2ArtifactRepository;
 
 /**
  * Factory for {@link org.gradle.api.artifacts.repositories.ArtifactRepository} implementations.
@@ -34,4 +35,6 @@ public interface BaseRepositoryFactory {
     IvyArtifactRepository createIvyRepository();
 
     MavenArtifactRepository createMavenRepository();
+    
+    P2ArtifactRepository createP2Repository();
 }

@@ -21,6 +21,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler;
 import org.gradle.api.artifacts.repositories.FlatDirectoryArtifactRepository;
 import org.gradle.api.artifacts.repositories.IvyArtifactRepository;
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository;
+import org.gradle.api.artifacts.repositories.P2ArtifactRepository;
 import org.gradle.api.internal.ClosureBackedAction;
 import org.gradle.api.internal.ConfigureByMapAction;
 import org.gradle.api.internal.artifacts.BaseRepositoryFactory;
@@ -40,6 +41,7 @@ public class DefaultRepositoryHandler extends DefaultArtifactRepositoryContainer
     public static final String FLAT_DIR_DEFAULT_NAME = "flatDir";
     private static final String MAVEN_REPO_DEFAULT_NAME = "maven";
     private static final String IVY_REPO_DEFAULT_NAME = "ivy";
+    private static final String P2_REPO_DEFAULT_NAME = "p2";
 
     private final BaseRepositoryFactory repositoryFactory;
 
@@ -101,5 +103,11 @@ public class DefaultRepositoryHandler extends DefaultArtifactRepositoryContainer
         return ivy(new ClosureBackedAction<IvyArtifactRepository>(closure));
     }
 
+    public P2ArtifactRepository p2(Action<? super P2ArtifactRepository> action) {
+        return addRepository(repositoryFactory.createP2Repository(), P2_REPO_DEFAULT_NAME, action);
+    }
 
+    public P2ArtifactRepository p2(Closure closure) {
+        return p2(new ClosureBackedAction<P2ArtifactRepository>(closure));
+    }
 }

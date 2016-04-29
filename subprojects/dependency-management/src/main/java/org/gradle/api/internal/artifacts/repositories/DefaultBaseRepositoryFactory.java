@@ -21,6 +21,7 @@ import org.gradle.api.artifacts.repositories.AuthenticationContainer;
 import org.gradle.api.artifacts.repositories.FlatDirectoryArtifactRepository;
 import org.gradle.api.artifacts.repositories.IvyArtifactRepository;
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository;
+import org.gradle.api.artifacts.repositories.P2ArtifactRepository;
 import org.gradle.authentication.Authentication;
 import org.gradle.api.internal.artifacts.BaseRepositoryFactory;
 import org.gradle.api.internal.artifacts.dsl.DefaultRepositoryHandler;
@@ -103,6 +104,10 @@ public class DefaultBaseRepositoryFactory implements BaseRepositoryFactory {
     public MavenArtifactRepository createMavenRepository() {
         return instantiator.newInstance(DefaultMavenArtifactRepository.class, fileResolver, transportFactory,
                 locallyAvailableResourceFinder, instantiator, artifactFileStore, pomParser, createAuthenticationContainer());
+    }
+    
+    public P2ArtifactRepository createP2Repository() {
+        return instantiator.newInstance(DefaultP2ArtifactRepository.class, fileResolver, instantiator, createAuthenticationContainer());
     }
 
     protected AuthenticationContainer createAuthenticationContainer() {
